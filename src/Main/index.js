@@ -1,5 +1,6 @@
 import React from 'react';
 import { Todos } from '../Todos';
+import { TodosForm } from '../TodosForm';
 export const Main = () => {
   const [todos, setTodos] = React.useState([
     {
@@ -23,6 +24,8 @@ export const Main = () => {
   return (
     <main className="App-main">
       <Todos todos={todos} />
+      <hr />
+      <TodosForm />
     </main>
   );
 };
