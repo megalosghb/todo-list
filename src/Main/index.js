@@ -21,11 +21,21 @@ export const Main = () => {
       done: false,
     },
   ]);
+
+  const handleAddTodo = (newTitle) => {
+    const newItem = {
+      id: todos.length,
+      title: newTitle,
+      done: false,
+    };
+    setTodos([...todos, newItem]);
+  };
+
   return (
     <main className="App-main">
       <Todos todos={todos} />
       <hr />
-      <TodosForm />
+      <TodosForm addTodo={handleAddTodo} />
     </main>
   );
 };
