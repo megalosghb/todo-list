@@ -1,4 +1,7 @@
 import React from 'react';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { Button, TextField, Box } from '@material-ui/core';
+
 export const TodosForm = ({ addTodo }) => {
   const [todoTitle, setTodoTitle] = React.useState('');
 
@@ -8,18 +11,29 @@ export const TodosForm = ({ addTodo }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo(todoTitle);
+    if (!todoTitle.trim()) return;
+    addTodo(todoTitle.trim());
     setTodoTitle('');
   };
   return (
     <form className="App-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="New ToDo"
-        value={todoTitle}
-        onChange={handleChange}
-      />
-      <button type="submit">Add</button>
+      <Box display="flex" m={1}>
+        <TextField
+          type="text"
+          label="New ToDo"
+          value={todoTitle}
+          onChange={handleChange}
+        />
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleOutlineIcon />}
+        >
+          Add
+        </Button>
+      </Box>
     </form>
   );
 };
