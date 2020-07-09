@@ -11,8 +11,11 @@ export const TodosForm = ({ addTodo }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo(todoTitle);
+    if (!todoTitle.trim()) return;
+    addTodo(todoTitle.trim());
     setTodoTitle('');
+    //addTodo(todoTitle);
+    //setTodoTitle('');
   };
   return (
     <form className="App-form" onSubmit={handleSubmit}>

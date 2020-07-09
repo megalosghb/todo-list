@@ -1,19 +1,30 @@
 import React from 'react';
 import './style.css';
+import { FormControlLabel } from '@material-ui/core';
 import { Checkbox } from '@material-ui/core';
-export const Todos = ({ todos }) => {
+export const Todos = ({ todos, changeItem }) => {
+  const handleChange = (id) => {
+    changeItem(id);
+  };
+
   return (
     <ul className="todos">
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          <Checkbox
-            value="checkedA"
-            color="primary"
-            inputProps={{ 'aria-label': 'Checkbox A' }}
-          />
-          {todo.title} {todo.done}
-        </li>
-      ))}
+      {todos.map((todo) => {
+        return (
+          <li key={todo.id}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={todo.done}
+                  color="primary"
+                  onChange={() => handleChange(todo.id)}
+                />
+              }
+              label={todo.title}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 };

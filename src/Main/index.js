@@ -31,9 +31,18 @@ export const Main = () => {
     setTodos([...todos, newItem]);
   };
 
+  const handleChangeItem = (id) => {
+    const newTodos = [...todos];
+    const item = newTodos.find((todo) => todo.id === id);
+    item.done = !item.done;
+
+    setTodos(newTodos);
+    console.log(item);
+  };
+
   return (
     <main className="App-main">
-      <Todos todos={todos} />
+      <Todos todos={todos} changeItem={handleChangeItem} />
       <hr />
       <TodosForm addTodo={handleAddTodo} />
     </main>
