@@ -1,6 +1,7 @@
 import React from 'react';
 import { Todos } from '../Todos';
 import { TodosForm } from '../TodosForm';
+
 export const Main = () => {
   const [todos, setTodos] = React.useState([
     {
@@ -37,7 +38,6 @@ export const Main = () => {
     item.done = !item.done;
 
     setTodos(newTodos);
-    console.log(item);
   };
 
   return (

@@ -14,8 +14,6 @@ export const TodosForm = ({ addTodo }) => {
     if (!todoTitle.trim()) return;
     addTodo(todoTitle.trim());
     setTodoTitle('');
-    //addTodo(todoTitle);
-    //setTodoTitle('');
   };
   return (
     <form className="App-form" onSubmit={handleSubmit}>
