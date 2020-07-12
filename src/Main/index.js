@@ -45,7 +45,7 @@ export const Main = () => {
   return (
     <main className="App-main">
       <Filtering showAll={showAll} setShowAll={setShowAll} />
-      <Todos todos={todos} changeItem={handleChangeItem} />
+      <Todos todos={todos} showAll={showAll} changeItem={handleChangeItem} />
       <hr />
       <TodosForm addTodo={handleAddTodo} />
     </main>
