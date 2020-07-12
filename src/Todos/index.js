@@ -11,7 +11,7 @@ export const Todos = ({ showAll, todos, changeItem }) => {
   return (
     <ul className="todos">
       {todos.map((todo) => {
-        if (!showAll && todos.done) {
+        if (!showAll && todo.done) {
           return null;
         }
         return (
