@@ -6,23 +6,30 @@ import {
   Typography,
   Button,
 } from '@material-ui/core';
-import { About } from '../About';
+import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton
-          edge="start"
-          className={Header.menuButton}
+        <IconButton edge="start" color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton>
+        <Typography
+          className="typo"
           color="inherit"
-          aria-label="menu"
-        ></IconButton>
-        <Typography variant="h6" className={Header.title}>
-          HEADER
+          to="/"
+          component={Link}
+          variant="h6"
+        >
+          TODO
         </Typography>
-        <Button color="inherit">
-          <Button to={About} component={About} />
+        <Button color="inherit" to="/" component={Link}>
+          Home
+        </Button>
+        <Button color="inherit" to="/about" component={Link}>
+          About
         </Button>
       </Toolbar>
     </AppBar>
