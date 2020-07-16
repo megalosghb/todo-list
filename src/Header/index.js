@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
+import './style.css';
 
 export const Header = () => {
   return (
