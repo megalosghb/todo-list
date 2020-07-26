@@ -32,6 +32,9 @@ export const Header = () => {
         <Button color="inherit" to="/about" component={Link}>
           About
         </Button>
+        <Button color="inherit" to="/users" component={Link}>
+          Users
+        </Button>
       </Toolbar>
     </AppBar>
   );
