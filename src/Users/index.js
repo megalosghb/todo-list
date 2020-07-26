@@ -18,7 +18,7 @@ export const Users = () => {
   return (
     <List>
       {users.map((user) => (
-        <ListItem key={user._id} component={Link} to={`/user/${user._id}`}>
+        <ListItem key={user._id} component={Link} to={`/users/${user._id}`}>
           {user.name}
         </ListItem>
       ))}
