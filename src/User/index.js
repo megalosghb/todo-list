@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { List, ListItem } from '@material-ui/core';
 
 export const User = () => {
   const [user, setUser] = React.useState([]);
@@ -17,5 +18,11 @@ export const User = () => {
   }, [id]);
 
   if (!user._id) return <h1> Loading... </h1>;
-  return <h1>{user.name}</h1>;
+  return (
+    <List>
+      <ListItem>
+        {user.name} {user.surname}
+      </ListItem>
+    </List>
+  );
 };
