@@ -14,12 +14,14 @@ export const User = () => {
     const userData = await response.json();
     setUser(userData);
   };
-  if (user.length === 0) return <h1> Loading...</h1>;
+  if (user._id) return <h1> Loading...</h1>;
   return (
     <List>
       {user.map((user) => (
         <ListItem key={user._id} component={Link} to={`/user/${user._id}`}>
-          {user.name}
+          <h1>
+            {user.name} {user.surname}
+          </h1>
         </ListItem>
       ))}
     </List>
