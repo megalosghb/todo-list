@@ -11,16 +11,16 @@ export const TodoWrapper = () => {
   const [todos, setTodos] = React.useState([]);
 
   React.useEffect(() => {
-    const fetchUser = async () => {
+    const fetchTodos = async () => {
       const response = await fetch(
         `https://merey-todo-list.herokuapp.com/api/users/${userId}/todos`
       );
-      const userData = await response.json();
+      const todosData = await response.json();
 
-      setTodos(userData);
+      setTodos(todosData);
     };
 
-    fetchUser();
+    fetchTodos();
   }, [userId]);
 
   if (!userId) return <h1> Please choose User</h1>;
