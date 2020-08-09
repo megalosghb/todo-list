@@ -5,6 +5,7 @@ import {
   IconButton,
   Typography,
   Button,
+  Box,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
@@ -26,15 +27,14 @@ export const Header = () => {
         >
           TODO
         </Typography>
-        <Button color="inherit" to="/" component={Link}>
-          Home
-        </Button>
-        <Button color="inherit" to="/about" component={Link}>
-          About
-        </Button>
-        <Button color="inherit" to="/users" component={Link}>
-          Users
-        </Button>
+        <Box display="flex" flexGrow={1} justifyContent="flex-end">
+          <Button color="inherit" to="/" component={Link}>
+            Home
+          </Button>
+          <Button color="inherit" to="/about" component={Link}>
+            About
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );
