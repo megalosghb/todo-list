@@ -9,37 +9,60 @@ export const TodoWrapper = () => {
   const { userId } = useParams();
   const [showAll, setShowAll] = React.useState(false);
   const [todos, setTodos] = React.useState([]);
+  const fetchTodos = React.useCallback(async () => {
+    const response = await fetch(
+      `https://merey-todo-list.herokuapp.com/api/users/${userId}/todos`
+    );
+    const todosData = await response.json();
+
+    setTodos(todosData);
+  }, [userId]);
 
   React.useEffect(() => {
-    const fetchTodos = async () => {
-      const response = await fetch(
-        `https://merey-todo-list.herokuapp.com/api/users/${userId}/todos`
-      );
-      const todosData = await response.json();
-
-      setTodos(todosData);
-    };
-
     fetchTodos();
-  }, [userId]);
+  }, [fetchTodos]);
 
   if (!userId) return <h1> Please choose User</h1>;
 
-  const handleAddTodo = (newTitle) => {
-    const newItem = {
-      _id: todos.length,
-      title: newTitle,
-      done: false,
-    };
+  const handleAddTodo = async (newTitle) => {
+    const response = await fetch(
+      `https://merey-todo-list.herokuapp.com/api/todos/${userId}`,
+      {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
 
-    setTodos([...todos, newItem]);
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+
+        body: JSON.stringify({ title: newTitle }), // body data type must match "Content-Type" header
+      }
+    );
+
+    const taskData = await response.json();
+    if (!taskData.taskId) alert("New Item wasn't added to DB");
+    else fetchTodos();
   };
 
-  const handleChangeItem = (id) => {
-    const newTodos = [...todos];
-    const item = newTodos.find((todo) => todo._id === id);
-    item.done = !item.done;
-    setTodos(newTodos);
+  const handleChangeItem = async (id) => {
+    const item = todos.find((task) => task._id === id);
+    const response = await fetch(
+      `https://merey-todo-list.herokuapp.com/api/todos/${id}`,
+      {
+        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+
+        body: JSON.stringify({ done: !item.done }), // body data type must match "Content-Type" header
+      }
+    );
+
+    const taskData = await response.json();
+    if (!taskData.taskId) alert("New Item wasn't added to DB");
+    else fetchTodos();
   };
 
   return (
