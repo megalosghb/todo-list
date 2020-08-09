@@ -28,14 +28,12 @@ export const TodoWrapper = () => {
     const response = await fetch(
       `https://merey-todo-list.herokuapp.com/api/todos/${userId}`,
       {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
 
-        body: JSON.stringify({ title: newTitle }), // body data type must match "Content-Type" header
+        body: JSON.stringify({ title: newTitle }),
       }
     );
 
@@ -49,19 +47,18 @@ export const TodoWrapper = () => {
     const response = await fetch(
       `https://merey-todo-list.herokuapp.com/api/todos/${id}`,
       {
-        method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+        method: 'PUT',
 
         headers: {
           'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
 
-        body: JSON.stringify({ done: !item.done }), // body data type must match "Content-Type" header
+        body: JSON.stringify({ done: !item.done }),
       }
     );
 
     const taskData = await response.json();
-    if (!taskData.taskId) alert("New Item wasn't added to DB");
+    if (!taskData.taskId) alert("Item property wasn't changed on DB");
     else fetchTodos();
   };
 
