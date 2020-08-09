@@ -15,13 +15,13 @@ export const Todos = ({ showAll, todos, changeItem }) => {
           return null;
         }
         return (
-          <li key={todo.id}>
+          <li key={todo._id}>
             <FormControlLabel
               control={
                 <Checkbox
                   checked={todo.done}
                   color="primary"
-                  onChange={() => handleChange(todo.id)}
+                  onChange={() => handleChange(todo._id)}
                 />
               }
               label={todo.title}
