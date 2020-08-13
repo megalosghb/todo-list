@@ -7,7 +7,7 @@ import { Paper, Box } from '@material-ui/core';
 
 export const TodoWrapper = () => {
   const { userId } = useParams();
-  const [showAll, setShowAll] = React.useState(false);
+  const [showAll, setShowAll] = React.useState(true);
   const [todos, setTodos] = React.useState([]);
   const fetchTodos = React.useCallback(async () => {
     const response = await fetch(
@@ -62,6 +62,23 @@ export const TodoWrapper = () => {
     else fetchTodos();
   };
 
+  const handleDeleteItem = async (taskId) => {
+    const response = await fetch(
+      `https://merey-todo-list.herokuapp.com/api/todos/${taskId}`,
+      {
+        method: 'DELETE',
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const taskData = await response.json();
+    if (!taskData.taskId) alert("Item wasn't deleted on DB");
+    else fetchTodos();
+  };
+
   return (
     <Paper>
       <Box p={2}>
@@ -72,6 +89,7 @@ export const TodoWrapper = () => {
               todos={todos}
               showAll={showAll}
               changeItem={handleChangeItem}
+              deleteItem={handleDeleteItem}
             />
             <hr />
           </>
